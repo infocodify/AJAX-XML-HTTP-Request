@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <h2>AJAX - XML HTTP Request object</h2>
+    <div>
+
+        <button type="button" id="load-data" class="btn">LOAD DATA</button>
+    </div>
+    <br /><br />
+    <div>
+        <div id="output" ></div>
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+
+        $('#load-data').click(function () {
+            var xhr = new XMLHttpRequest();
+
+            //WHEN WE GET DATA
+            xhr.onreadystatechange = function () {
+
+                //MAKE SURE WE HAVE DATA
+                // 4 - data are ready      200 - completed
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+                    var data = xhr.responseText;
+                    $('#output').text(data);
+                }
+            }
+            //OPEN CONNECTION
+            xhr.open('GET', 'demo.txt');
+            //SEND THE REQUST
+            xhr.send();
+        });
+    </script>
+
+
+</body>
+</html>
